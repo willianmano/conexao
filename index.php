@@ -13,8 +13,6 @@ print_r($res);
 
 
 $sql = "SELECT * FROM posts";
-$data = array();
-
-$res = $con->fetchAll($sql, $data);
+$res = $con->fetchAll($sql);
 echo "<pre>";
 print_r($res);

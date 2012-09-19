@@ -36,7 +36,7 @@ class Connection {
 		self::$connection = null;
 		self::$connected = false;
 	}
-	public static function fetchAll($sql, $data) {
+	public static function fetchAll($sql, $data = array()) {
 		self::connect();
 		$stmt = self::$connection->prepare($sql);
 		$stmt->execute($data);
@@ -47,7 +47,7 @@ class Connection {
 
 		return $ret;
 	}
-	public static function execute($sql, $data) {
+	public static function execute($sql, $data  = array()) {
 		self::connect();
 		$stmt = self::$connection->prepare($sql);
 		$ret = $stmt->execute($data);
