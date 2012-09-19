@@ -5,12 +5,19 @@ require_once ('Config.php');
 class Connection {
 
 	private static $connected = false;
-	private static $instance = null;
+	private static $instance;
 	private static $connection = null;
 
+	private function __construct() {
+		//echo 'Essa classe nao deve ser instanciada! Utilize Connection::getInstance()';
+	}
+	public function __clone() {
+		trigger_error('Clone nao e permitido.', E_USER_ERROR);
+	}
 	public static function getInstance() {
-		if(self::$instance === null) {
-			self::$instance = new self();
+		if(!isset(self::$instance)) {
+			$c = __CLASS__;
+			self::$instance = new $c;
 		}
 		return self::$instance;
 	}
